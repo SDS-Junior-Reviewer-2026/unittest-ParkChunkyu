@@ -37,13 +37,19 @@ class CalculatorTest {
 
     @Test
     void subtractTest() {
-        assertThat(mockCalculator.add(3, 4))
+        assertThat(mockCalculator.subtract(3, 4))
                 .isEqualTo(-1);
     }
 
     @Test
     void multiplyTest() {
-        assertThat(mockCalculator.add(3, 4))
+        assertThat(mockCalculator.multiply(3, 4))
                 .isEqualTo(12);
+    }
+
+    @Test
+    void divideTest() {
+        assertThat(mockCalculator.divide(8, 4))
+                .isEqualTo(2);
     }
 }

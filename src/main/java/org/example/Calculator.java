@@ -26,4 +26,15 @@ public class Calculator {
         }
         return result;
     }
+
+    public int divide(int a, int b) throws ArithmeticException {
+        if (b == 0) { throw new ArithmeticException("Divide by zero"); }
+
+        int result = 0;
+        while (a >= b) {
+            result = adder.add(result, 1);
+            a = adder.add(a, -b);
+        }
+        return result;
+    }
 }
