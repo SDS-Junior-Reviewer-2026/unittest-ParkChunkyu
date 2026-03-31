@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,39 +20,29 @@ class CalculatorTest {
     @InjectMocks
     private Calculator mockCalculator;
 
+    @BeforeEach
+    void stub() {
+        doAnswer(invocationOnMock -> {
+            int firstArgument = invocationOnMock.getArgument(0);
+            int secondArgument = invocationOnMock.getArgument(1);
+            return firstArgument + secondArgument;
+        }).when(mockAdder).add(Mockito.anyInt(), Mockito.anyInt());
+    }
 
     @Test
     void addTest() {
-        doAnswer(invocationOnMock -> {
-            int a = invocationOnMock.getArgument(0);
-            int b = invocationOnMock.getArgument(1);
-            return a + b;
-        }).when(mockAdder).add(Mockito.anyInt(), Mockito.anyInt());
-
         assertThat(mockCalculator.add(3, 4))
                 .isEqualTo(7);
     }
 
     @Test
     void subtractTest() {
-        doAnswer(invocationOnMock -> {
-            int a = invocationOnMock.getArgument(0);
-            int b = invocationOnMock.getArgument(1);
-            return a + b;
-        }).when(mockAdder).add(Mockito.anyInt(), Mockito.anyInt());
-
         assertThat(mockCalculator.add(3, 4))
                 .isEqualTo(-1);
     }
 
     @Test
     void multiplyTest() {
-        doAnswer(invocationOnMock -> {
-            int a = invocationOnMock.getArgument(0);
-            int b = invocationOnMock.getArgument(1);
-            return a + b;
-        }).when(mockAdder).add(Mockito.anyInt(), Mockito.anyInt());
-
         assertThat(mockCalculator.add(3, 4))
                 .isEqualTo(12);
     }
