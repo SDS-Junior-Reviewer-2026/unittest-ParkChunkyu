@@ -30,11 +30,21 @@ public class Calculator {
     public int divide(int a, int b) throws ArithmeticException {
         if (b == 0) { throw new ArithmeticException("Divide by zero"); }
 
+        boolean isResultNegative = (a < 0 && b > 0) || (a > 0 && b < 0);
+
+        a = Math.abs(a);
+        b = Math.abs(b);
+
         int result = 0;
         while (a >= b) {
             result = adder.add(result, 1);
             a = adder.add(a, -b);
         }
+
+        if (isResultNegative) {
+            result = -result;
+        }
+
         return result;
     }
 }

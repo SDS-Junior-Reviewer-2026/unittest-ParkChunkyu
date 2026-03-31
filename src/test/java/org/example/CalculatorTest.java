@@ -49,8 +49,26 @@ class CalculatorTest {
     }
 
     @Test
-    void divideTest() {
+    void divideTest_pos_pos() {
         assertThat(mockCalculator.divide(8, 4))
+                .isEqualTo(2);
+    }
+
+    @Test
+    void divideTest_neg_pos() {
+        assertThat(mockCalculator.divide(-8, 4))
+                .isEqualTo(-2);
+    }
+
+    @Test
+    void divideTest_pos_neg() {
+        assertThat(mockCalculator.divide(8, -4))
+                .isEqualTo(-2);
+    }
+
+    @Test
+    void divideTest_neg_neg() {
+        assertThat(mockCalculator.divide(-8, -4))
                 .isEqualTo(2);
     }
 
