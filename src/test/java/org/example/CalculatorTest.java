@@ -9,7 +9,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doAnswer;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
 class CalculatorTest {
@@ -22,7 +23,7 @@ class CalculatorTest {
 
     @BeforeEach
     void stub() {
-        doAnswer(invocationOnMock -> {
+        lenient().doAnswer(invocationOnMock -> {
             int firstArgument = invocationOnMock.getArgument(0);
             int secondArgument = invocationOnMock.getArgument(1);
             return firstArgument + secondArgument;
@@ -51,5 +52,11 @@ class CalculatorTest {
     void divideTest() {
         assertThat(mockCalculator.divide(8, 4))
                 .isEqualTo(2);
+    }
+
+    @Test
+    void divideByZeroTest() {
+        assertThatThrownBy(() -> mockCalculator.divide(10, 0))
+                .isInstanceOf(ArithmeticException.class);
     }
 }
